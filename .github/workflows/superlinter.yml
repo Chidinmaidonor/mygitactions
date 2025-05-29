@@ -1,0 +1,17 @@
+name: Super-Linter
+
+on: push                                                   # in this part it is listening for a push event.
+
+jobs:
+  super-lint:
+    name: Lint code base
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code                              # STEP 2: onCE the Push event happens it will first CHECKOUT OUR CODE.
+        uses: actions/checkout@v2
+
+      - name: Run Super-Linter                          #STEP 3: then after checking the code it will run the linter against the code to make sure that the code comforms to the linting standards.
+        uses: github/super-linter@v4
+        env:
+          DEFAULT_BRANCH: main
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
